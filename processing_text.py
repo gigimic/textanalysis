@@ -95,3 +95,7 @@ for entry in ref_entity:
 
 # print(name_entities)
 print('\n ----------Done')
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
