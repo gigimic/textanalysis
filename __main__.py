@@ -23,6 +23,30 @@ for paragraph in paragraphs:
     ref_entity = list(dict.fromkeys(all_entity)) #remove duplicates in the list
     print(ref_entity)
 
+    name_entities = {}
+    for entry in ref_entity:
+        name_entities[entry]=[]
+
+    # need to import pandas to use dataframe {} and save entity and name 
+
+    for token in tagged_tokens:
+        for entry in ref_entity:
+            if(token[1] == entry):
+                # print(token[0], token[1])
+                name_entities[entry].append(token[0])
+
+    print('....following are the named entities...')
+    # for entry in ref_entity:
+    #     print(entry, name_entities[entry])
+
+    print('.............following are the main  entities...')
+    doc = nlp(text)
+    ents = [(x.text, x.label_) for x in doc.ents]
+    # print(ents)
+    for ent in ents:
+        print(ent)
+
+
 
 
 if __name__ == "__main__":
