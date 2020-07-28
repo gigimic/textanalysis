@@ -13,7 +13,7 @@ story1 = open("story1.txt", "r")
 full_story = story1.read()
 paragraphs = full_story.split('\n\n') 
 
-for paragraph in paragraphs:
+for index, paragraph in enumerate(paragraphs):
     text = clean_text_string(paragraph)
     tokenized_word=word_tokenize(text)
     tagged_tokens=nltk.pos_tag(tokenized_word)
@@ -21,7 +21,7 @@ for paragraph in paragraphs:
     all_entity = [token[1] for token in tagged_tokens]
     # print(all_entity)
     ref_entity = list(dict.fromkeys(all_entity)) #remove duplicates in the list
-    print(ref_entity)
+    # print(ref_entity)
 
     name_entities = {}
     for entry in ref_entity:
@@ -35,11 +35,12 @@ for paragraph in paragraphs:
                 # print(token[0], token[1])
                 name_entities[entry].append(token[0])
 
-    print('....following are the named entities...')
+    # print('....following are the named entities...')
     # for entry in ref_entity:
     #     print(entry, name_entities[entry])
 
-    print('.............following are the main  entities...')
+    # if index <4:
+    print(index, '.............following are the main  entities...')
     doc = nlp(text)
     ents = [(x.text, x.label_) for x in doc.ents]
     # print(ents)
